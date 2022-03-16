@@ -1,7 +1,7 @@
 # Init 
 yarn create react-app my-app --template redux-typescript
 yarn add redux-saga
-    
+yarn add tape
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc
