@@ -5,11 +5,14 @@ import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { CssBaseline } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
+        {/* Reset CSS */}
+        <CssBaseline />
         <App />
       </Router>
     </Provider>
