@@ -30,6 +30,13 @@ export function LoginPage() {
     );
   };
 
+  const handleLogoutClick = () => {
+   // TODO: Get username + pwd from login form
+   dispatch(
+     authActions.logout()
+   );
+ };
+
   return (
     <div className={classes.root}>
       <Paper elevation={1} className={classes.box}>
@@ -40,6 +47,7 @@ export function LoginPage() {
           <Button fullWidth variant="contained" color="primary" onClick={handleLoginClick}>
             Fake Login
           </Button>
+          <button onClick={handleLogoutClick}>log out</button>
         </Box>
       </Paper>
     </div>
