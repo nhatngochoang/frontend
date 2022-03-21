@@ -11,6 +11,9 @@ yarn add @mui/icons-material
 yarn add @mui/styles
 yarn add @emotion/react
 yarn add @emotion/styled
+
+npm install --save connected-react-router
+yarn add history@4.10.1
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc

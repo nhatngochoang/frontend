@@ -3758,7 +3758,7 @@
   "resolved" "https://registry.npmjs.org/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz"
   "version" "1.6.0"
 
-"connected-react-router@^6.9.1":
+"connected-react-router@^6.9.2":
   "integrity" "sha512-bE8kNBiZv9Mivp7pYn9JvLH5ItTjLl45kk1/Vha0rmAK9I/ETb5JPJrAm0h2KCG9qLfv7vqU3Jo4UUDo0oJnQg=="
   "resolved" "https://registry.npmjs.org/connected-react-router/-/connected-react-router-6.9.2.tgz"
   "version" "6.9.2"
