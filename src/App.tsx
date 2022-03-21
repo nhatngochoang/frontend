@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { NotFound, PrivateRoute } from './components/Common';
 import { AdminLayout } from './components/Layout';
 import { LoginPage } from './features/auth/pages/LoginPage';
@@ -7,21 +7,20 @@ import { LoginPage } from './features/auth/pages/LoginPage';
 function App() {
   return (
     <div>
-      <Routes>
+      <Switch>
         {/* LOGIN */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login">
+          <LoginPage />
+        </Route>
         {/* ADMIN */}
-        <Route
-          path="/admin"
-          element={
-            <PrivateRoute>
-              <AdminLayout />
-            </PrivateRoute>
-          }
-        />
+        <PrivateRoute path="/admin">
+          <AdminLayout />
+        </PrivateRoute>
         {/* NOT FOUND */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
