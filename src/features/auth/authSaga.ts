@@ -1,6 +1,7 @@
 import { authActions, LoginPayload } from './authSlice';
 import { fork, take, call, delay, put } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { history } from '../../history';
 
 function* handleLogin(payload: LoginPayload) {
   try {
@@ -23,6 +24,7 @@ function* handleLogout() {
   yield delay(5000);
   localStorage.removeItem('access_token');
   // navigate to login page
+  yield history.push('/');
 }
 
 function* watchLoginFlow() {

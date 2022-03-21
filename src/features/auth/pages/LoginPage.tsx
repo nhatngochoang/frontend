@@ -31,11 +31,9 @@ export function LoginPage() {
   };
 
   const handleLogoutClick = () => {
-   // TODO: Get username + pwd from login form
-   dispatch(
-     authActions.logout()
-   );
- };
+    // TODO: Get username + pwd from login form
+    dispatch(authActions.logout());
+  };
 
   return (
     <div className={classes.root}>
