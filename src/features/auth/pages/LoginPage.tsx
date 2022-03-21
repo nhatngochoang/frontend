@@ -1,6 +1,6 @@
-import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Box, Button, CircularProgress, makeStyles, Paper, Typography } from '@material-ui/core';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import * as React from 'react';
-import { useAppDispatch } from 'app/hooks';
 import { authActions } from '../authSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +20,8 @@ export function LoginPage() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
+  const isLogging = useAppSelector((state) => state.auth.logging);
+
   const handleLoginClick = () => {
     // TODO: Get username + pwd from login form
     dispatch(
@@ -31,11 +33,9 @@ export function LoginPage() {
   };
 
   const handleLogoutClick = () => {
-   // TODO: Get username + pwd from login form
-   dispatch(
-     authActions.logout()
-   );
- };
+    // TODO: Get username + pwd from login form
+    dispatch(authActions.logout());
+  };
 
   return (
     <div className={classes.root}>
@@ -45,7 +45,7 @@ export function LoginPage() {
         </Typography>
         <Box mt={4}>
           <Button fullWidth variant="contained" color="primary" onClick={handleLoginClick}>
-            Fake Login
+            {isLogging && <CircularProgress size={20} color="secondary" />} &nbsp; Fake Login
           </Button>
           <button onClick={handleLogoutClick}>log out</button>
         </Box>

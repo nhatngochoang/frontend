@@ -19,7 +19,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: true,
-    }).concat(sagaMiddleware, routerMiddleware(history)), // Step 1 Saga + connected-react-router
+    }).concat(sagaMiddleware, routerMiddleware(history)), // Step 1 Saga + connected-react-router ➤ for dispatching history actions
 });
 
 sagaMiddleware.run(rootSaga); // Step 1 Saga

@@ -25,3 +25,8 @@ yield takeEvery('*', log)
 yield takeEvery('counter/increment', log)
 yield takeEvery(increment().type, log)  {increment} ➤ export from counterSlice.actions
 
+# Handle Loading and Error
+- Loading: store in redu
+- Error: 
+  + Trigger Toast
+  + Call API directly in Component not through Saga (only when need Saga Effect)
