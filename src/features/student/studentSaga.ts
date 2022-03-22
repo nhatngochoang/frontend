@@ -7,7 +7,6 @@ import { studentActions } from './studentSlice';
 function* fetchStudentList(action: PayloadAction<ListParams>) {
    try {
       const response: ListResponse<Student> = yield call(studentApi.getAll, action.payload);
-      console.log(response);
       yield put(studentActions.fetchStudentListSuccess(response)); // dispatch action
    } catch (error) {
       console.log('Failed to fetch student list', error);
