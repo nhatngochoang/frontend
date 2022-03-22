@@ -2,6 +2,7 @@ import { Box, Button, LinearProgress, makeStyles, Typography } from '@material-u
 import { Pagination } from '@material-ui/lab';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import React, { useEffect } from 'react';
+import { selectCityMap } from '../../city/citySlice';
 import StudentTable from '../components/StudentTable';
 import {
    selectStudenLoading,
@@ -40,6 +41,7 @@ export default function ListPage() {
    const pagination = useAppSelector(selectStudentPagination);
    const filter = useAppSelector(selectStudentFilter);
    const loading = useAppSelector(selectStudenLoading);
+   const cityMap = useAppSelector(selectCityMap);
 
    useEffect(() => {
       dispatch(studentActions.fetchStudentList(filter));
@@ -66,7 +68,7 @@ export default function ListPage() {
          </Box>
 
          {/* StudentTable */}
-         <StudentTable studentList={studentList} />
+         <StudentTable studentList={studentList} cityMap={cityMap} />
 
          {/* Pagination */}
          <Box my={2} display="flex" justifyContent="center">

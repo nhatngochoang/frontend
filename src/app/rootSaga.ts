@@ -4,7 +4,15 @@ import { incrementAsync } from '../sagas';
 import authSaga from '../features/auth/authSaga';
 import dashboardSaga from '../features/dashboard/dashboardSaga';
 import studentSaga from '../features/student/studentSaga';
+import citySaga from '../features/city/citySaga';
 
 export default function* rootSaga() {
-   yield all([counterSaga(), incrementAsync(), authSaga(), dashboardSaga(), studentSaga()]);
+   yield all([
+      counterSaga(),
+      incrementAsync(),
+      authSaga(),
+      dashboardSaga(),
+      studentSaga(),
+      citySaga(),
+   ]);
 }
