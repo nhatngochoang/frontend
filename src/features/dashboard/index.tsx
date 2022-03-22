@@ -47,8 +47,6 @@ export default function Dashboard(props: DashboardProps) {
    //    rankingByCityList,
    // });
 
-   console.log(rankingByCityList);
-
    React.useEffect(() => {
       dispatch(dashboardActions.fetchData());
    }, [dispatch]);

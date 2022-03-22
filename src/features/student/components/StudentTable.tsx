@@ -50,7 +50,8 @@ export default function StudentTable({ studentList, onEdit, onRemove }: StudentT
                      <TableCell align="right">
                         <Button
                            className={classes.edit}
-                           variant="contained"
+                           size="small"
+                           // variant="contained"
                            color="primary"
                            onClick={() => onEdit?.(student)}
                         >
@@ -58,7 +59,8 @@ export default function StudentTable({ studentList, onEdit, onRemove }: StudentT
                         </Button>
 
                         <Button
-                           variant="outlined"
+                           size="small"
+                           // variant="outlined"
                            color="secondary"
                            onClick={() => onRemove?.(student)}
                         >
