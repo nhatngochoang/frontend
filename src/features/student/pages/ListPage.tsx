@@ -2,7 +2,8 @@ import { Box, Button, LinearProgress, makeStyles, Typography } from '@material-u
 import { Pagination } from '@material-ui/lab';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import React, { useEffect } from 'react';
-import { ListParams } from '../../../models';
+import studentApi from '../../../api/student';
+import { ListParams, Student } from '../../../models';
 import { selectCityList, selectCityMap } from '../../city/citySlice';
 import StudentFilters from '../components/StudentFilter';
 import StudentTable from '../components/StudentTable';
@@ -67,6 +68,20 @@ export default function ListPage() {
       dispatch(studentActions.setFilter(newFilter));
    };
 
+   const handleRemoveStudent = async (student: Student) => {
+      try {
+         // Remove student API
+         await studentApi.remove(student?.id || '');
+
+         // Trigger to re-fetch student list with current filter
+         const newFilter = { ...filter };
+         dispatch(studentActions.setFilter(newFilter));
+      } catch (error) {
+         // Toast error
+         console.log('Failed to fetch student', error);
+      }
+   };
+
    return (
       <Box className={classes.root}>
          {loading && <LinearProgress className={classes.loading} />}
@@ -87,7 +102,7 @@ export default function ListPage() {
             />
          </Box>
          {/* StudentTable */}
-         <StudentTable studentList={studentList} cityMap={cityMap} />
+         <StudentTable studentList={studentList} cityMap={cityMap} onRemove={handleRemoveStudent} />
 
          {/* Pagination */}
          <Box my={2} display="flex" justifyContent="center">

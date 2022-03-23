@@ -6,7 +6,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import React from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import React, { useState } from 'react';
 import { City, Student } from '../../../models';
 import { capitalizeString, getMarkColor } from '../../../utils';
 
@@ -30,57 +35,102 @@ export default function StudentTable(props: StudentTableProps) {
    const { studentList, cityMap, onEdit, onRemove } = props;
    const classes = useStyles();
    // console.log(cityMap);
+   const [open, setOpen] = useState(false);
+   const [selectedStudent, setSelectedStudent] = useState<Student>();
+
+   const handleClose = () => {
+      setOpen(false);
+   };
+
+   const handleRemoveClick = (student: Student) => {
+      setSelectedStudent(student);
+      setOpen(true);
+   };
+
+   const handleRemoveConfirm = (student: Student) => {
+      onRemove?.(student);
+      setOpen(false);
+   };
 
    return (
-      <TableContainer component={Paper}>
-         <Table className={classes.table} size="small" aria-label="simple table">
-            <TableHead>
-               <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Gender</TableCell>
-                  <TableCell>Mark</TableCell>
-                  <TableCell>City</TableCell>
-                  <TableCell align="right">Actions</TableCell>
-               </TableRow>
-            </TableHead>
-
-            <TableBody>
-               {studentList.map((student) => (
-                  <TableRow key={student.id}>
-                     <TableCell width={310}>{student.id}</TableCell>
-                     <TableCell>{student.name}</TableCell>
-                     <TableCell>{capitalizeString(student.gender)}</TableCell>
-                     <TableCell>
-                        <Box color={getMarkColor(student.mark)} fontWeight="bold">
-                           {student.mark}
-                        </Box>
-                     </TableCell>
-                     <TableCell>{cityMap[student.city]?.name}</TableCell>
-                     <TableCell align="right">
-                        <Button
-                           className={classes.edit}
-                           size="small"
-                           // variant="contained"
-                           color="primary"
-                           onClick={() => onEdit?.(student)}
-                        >
-                           Edit
-                        </Button>
-
-                        <Button
-                           size="small"
-                           // variant="outlined"
-                           color="secondary"
-                           onClick={() => onRemove?.(student)}
-                        >
-                           Remove
-                        </Button>
-                     </TableCell>
+      <>
+         <TableContainer component={Paper}>
+            <Table className={classes.table} size="small" aria-label="simple table">
+               <TableHead>
+                  <TableRow>
+                     <TableCell>ID</TableCell>
+                     <TableCell>Name</TableCell>
+                     <TableCell>Gender</TableCell>
+                     <TableCell>Mark</TableCell>
+                     <TableCell>City</TableCell>
+                     <TableCell align="right">Actions</TableCell>
                   </TableRow>
-               ))}
-            </TableBody>
-         </Table>
-      </TableContainer>
+               </TableHead>
+               <TableBody>
+                  {studentList.map((student) => (
+                     <TableRow key={student.id}>
+                        <TableCell width={310}>{student.id}</TableCell>
+                        <TableCell>{student.name}</TableCell>
+                        <TableCell>{capitalizeString(student.gender)}</TableCell>
+                        <TableCell>
+                           <Box color={getMarkColor(student.mark)} fontWeight="bold">
+                              {student.mark}
+                           </Box>
+                        </TableCell>
+                        <TableCell>{cityMap[student.city]?.name}</TableCell>
+                        <TableCell align="right">
+                           <Button
+                              className={classes.edit}
+                              size="small"
+                              // variant="contained"
+                              color="primary"
+                              onClick={() => onEdit?.(student)}
+                           >
+                              Edit
+                           </Button>
+                           <Button
+                              size="small"
+                              // variant="outlined"
+                              color="secondary"
+                              onClick={() => handleRemoveClick(student)}
+                           >
+                              Remove
+                           </Button>
+                        </TableCell>
+                     </TableRow>
+                  ))}
+               </TableBody>
+            </Table>
+         </TableContainer>
+         {/* Remove dialog */}
+         <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+         >
+            <DialogTitle id="alert-dialog-title">Remove a student?</DialogTitle>
+            <DialogContent>
+               <DialogContentText id="alert-dialog-description">
+                  Are you sure to remove student named "{selectedStudent?.name}". <br />
+                  This action can&apos;t be undo.
+               </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+               <Button onClick={handleClose} color="default" variant="outlined">
+                  Cancel
+               </Button>
+
+               <Button
+                  onClick={() => handleRemoveConfirm(selectedStudent as Student)}
+                  color="secondary"
+                  variant="contained"
+                  autoFocus
+               >
+                  Remove
+               </Button>
+            </DialogActions>
+         </Dialog>
+      </>
    );
 }
