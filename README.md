@@ -14,6 +14,8 @@ yarn add @emotion/styled
 
 npm install --save connected-react-router
 yarn add history@4.10.1
+
+npm install react-hook-form
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc
