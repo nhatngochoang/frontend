@@ -63,6 +63,10 @@ export default function ListPage() {
       dispatch(studentActions.setFilterWithDebounce(newFilter));
    };
 
+   const handleFilterChange = (newFilter: ListParams) => {
+      dispatch(studentActions.setFilter(newFilter));
+   };
+
    return (
       <Box className={classes.root}>
          {loading && <LinearProgress className={classes.loading} />}
@@ -78,6 +82,7 @@ export default function ListPage() {
             <StudentFilters
                filter={filter}
                cityList={cityList}
+               onFilterChange={handleFilterChange}
                onSearchChange={handleSearchChange}
             />
          </Box>
