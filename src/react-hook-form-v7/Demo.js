@@ -16,13 +16,13 @@ export default function Demo() {
       console.log(formData)
    }
 
-   const onErrors = (errors) => {
+   const onError = (errors) => {
       console.log(errors);
    }
 
    // after validate success, call onSubmit()
    return (
-      <form onSubmit={handleSubmit(onSubmit, onErrors)}>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
          <h1>React Hook Form</h1>
          <label htmlFor="name">Name</label>
          <input type="text" name="name" id="name" placeholder="Name" {...register("name", { required: true })} />

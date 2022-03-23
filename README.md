@@ -16,6 +16,7 @@ npm install --save connected-react-router
 yarn add history@4.10.1
 
 npm install react-hook-form
+npm i react-select
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc

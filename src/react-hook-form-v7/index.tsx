@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Demo from './Demo';
+import ThirdPartyComponents from './ThirdPartyComponents';
 
 export interface ReactHookFormProps {}
 
 export default function ReactHookForm(props: ReactHookFormProps) {
    return (
       <>
-         <h1>React Hook Form</h1>
          <Demo />
+         <hr />
+         <ThirdPartyComponents />
       </>
    );
 }
