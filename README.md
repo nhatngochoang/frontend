@@ -72,3 +72,5 @@ student slice state:
 - pagination
 - filter { page: 1, limit: 10, ... }
 
+# Bug
+https://www.kindacode.com/article/react-warning-finddomnode-is-deprecated-in-strictmode/
