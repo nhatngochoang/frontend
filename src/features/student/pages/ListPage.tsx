@@ -7,6 +7,7 @@ import { ListParams, Student } from '../../../models';
 import { selectCityList, selectCityMap } from '../../city/citySlice';
 import StudentFilters from '../components/StudentFilter';
 import StudentTable from '../components/StudentTable';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import {
    selectStudenLoading,
    selectStudentFilter,
@@ -38,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListPage() {
+   const match = useRouteMatch();
+   const history = useHistory();
+
    const classes = useStyles();
    const dispatch = useAppDispatch();
    const studentList = useAppSelector(selectStudentList);
@@ -82,15 +86,22 @@ export default function ListPage() {
       }
    };
 
+   const handleEditStudent = async (student: Student) => {
+      history.push(`${match.url}/${student.id}`);
+   };
+
    return (
       <Box className={classes.root}>
          {loading && <LinearProgress className={classes.loading} />}
          <Box className={classes.titleContainer}>
             <Typography variant="h4">Students</Typography>
 
-            <Button variant="contained" color="primary">
-               Add new student
-            </Button>
+            {/* Add */}
+            <Link to={`${match.url}/add`} style={{ textDecoration: 'none' }}>
+               <Button variant="contained" color="primary">
+                  Add new student
+               </Button>
+            </Link>
          </Box>
          {/* Filter */}
          <Box mb={3}>
@@ -102,7 +113,12 @@ export default function ListPage() {
             />
          </Box>
          {/* StudentTable */}
-         <StudentTable studentList={studentList} cityMap={cityMap} onRemove={handleRemoveStudent} />
+         <StudentTable
+            studentList={studentList}
+            cityMap={cityMap}
+            onEdit={handleEditStudent}
+            onRemove={handleRemoveStudent}
+         />
 
          {/* Pagination */}
          <Box my={2} display="flex" justifyContent="center">
