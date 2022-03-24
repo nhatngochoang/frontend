@@ -7,6 +7,7 @@ import { ListParams, Student } from '../../../models';
 import { selectCityList, selectCityMap } from '../../city/citySlice';
 import StudentFilters from '../components/StudentFilter';
 import StudentTable from '../components/StudentTable';
+import { toast } from 'react-toastify';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import {
    selectStudenLoading,
@@ -82,7 +83,7 @@ export default function ListPage() {
          dispatch(studentActions.setFilter(newFilter));
       } catch (error) {
          // Toast error
-         console.log('Failed to fetch student', error);
+         toast.success('Remove student successfully!');
       }
    };
 

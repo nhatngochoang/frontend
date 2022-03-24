@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core';
 import { ChevronLeft } from '@material-ui/icons';
-
+import { toast } from 'react-toastify';
 import { Student } from 'models';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
@@ -43,7 +43,8 @@ export default function AddEditPage() {
       } else {
          await studentApi.add(formValues);
       }
-
+      // Toast success
+      toast.success('Save student successfully!');
       // Redirect back to student list
       history.push('/admin/students');
    };

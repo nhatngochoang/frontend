@@ -8,16 +8,29 @@ import App from './App';
 import { store } from './app/store';
 import './index.css';
 import { history } from './utils';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        {/* Reset CSS */}
-        <CssBaseline />
-        <App />
-      </ConnectedRouter>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+   <React.StrictMode>
+      <Provider store={store}>
+         <ConnectedRouter history={history}>
+            {/* Reset CSS */}
+            <CssBaseline />
+            <App />
+         </ConnectedRouter>
+         <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+         />
+      </Provider>
+   </React.StrictMode>,
+   document.getElementById('root')
 );
