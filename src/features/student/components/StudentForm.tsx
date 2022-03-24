@@ -3,6 +3,7 @@ import { InputField } from 'components/FormFields';
 import { Student } from 'models';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import RadioGroupField from '../../../components/FormFields/RadioGroupField';
 
 export interface StudentFormProps {
    initialValues?: Student;
@@ -24,7 +25,15 @@ export default function StudentForm(props: StudentFormProps) {
             <InputField name="name" control={control} label="Full Name" />
             <InputField name="age" control={control} label="Age" type="number" />
             <InputField name="mark" control={control} label="Mark" type="number" />
-            <InputField name="gender" control={control} label="Gender" />
+            <RadioGroupField
+               name="gender"
+               control={control}
+               label="Gender"
+               options={[
+                  { label: 'Male', value: 'male' },
+                  { label: 'Female', value: 'female' },
+               ]}
+            />
             <InputField name="city" control={control} label="City" />
 
             <Box mt={3}>
