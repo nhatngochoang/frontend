@@ -34,15 +34,20 @@ export const cityActions = citySlice.actions;
 
 // Selectors
 export const selectCityList = (state: RootState) => state.city.list;
+// for create selector with many data - https://www.youtube.com/watch?v=wBj0ejiXbfw - 5min16'
 export const selectCityMap = createSelector(selectCityList, (cityList) =>
    cityList.reduce((map: { [key: string]: City }, city) => {
       map[city.code] = city;
       return map;
    }, {})
 );
-// for create selector with many data
-// https://www.youtube.com/watch?v=wBj0ejiXbfw
-// 5min16'
+// new data for city select
+export const selectCityOptions = createSelector(selectCityList, (cityList) =>
+   cityList.map((city) => ({
+      label: city.name,
+      value: city.code,
+   }))
+);
 
 // Reducer
 const cityReducer = citySlice.reducer;

@@ -1,9 +1,10 @@
 import { Box, Button } from '@material-ui/core';
-import { InputField } from 'components/FormFields';
+import { InputField, RadioGroupField, SelectField } from 'components/FormFields';
 import { Student } from 'models';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import RadioGroupField from '../../../components/FormFields/RadioGroupField';
+import { useAppSelector } from '../../../app/hooks';
+import { selectCityOptions } from '../../city/citySlice';
 
 export interface StudentFormProps {
    initialValues?: Student;
@@ -15,6 +16,7 @@ export default function StudentForm(props: StudentFormProps) {
    const { control, handleSubmit } = useForm<Student>({
       defaultValues: initialValues,
    });
+   const cityOptions = useAppSelector(selectCityOptions);
 
    const handleFormSubmit = (formValues: Student) => {
       console.log('Submit:', formValues);
@@ -34,7 +36,7 @@ export default function StudentForm(props: StudentFormProps) {
                   { label: 'Female', value: 'female' },
                ]}
             />
-            <InputField name="city" control={control} label="City" />
+            <SelectField name="city" control={control} label="City" options={cityOptions} />
 
             <Box mt={3}>
                <Button type="submit" variant="contained" color="primary">

@@ -20,7 +20,7 @@ export interface RadioGroupFieldProps {
    options: RadioOption[];
 }
 
-export default function RadioGroupField(props: RadioGroupFieldProps) {
+export function RadioGroupField(props: RadioGroupFieldProps) {
    const { name, control, label, disabled, options } = props;
 
    const {
