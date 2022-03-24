@@ -3,7 +3,7 @@ import { ChevronLeft } from '@material-ui/icons';
 
 import { Student } from 'models';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import studentApi from '../../../api/studentApi';
 import StudentForm from '../components/StudentForm';
 
@@ -11,6 +11,7 @@ export default function AddEditPage() {
    const { studentId } = useParams<{ studentId: string }>();
    const isEdit = Boolean(studentId);
    const [student, setStudent] = useState<Student>();
+   const history = useHistory();
 
    useEffect(() => {
       if (!studentId) return;
@@ -35,8 +36,16 @@ export default function AddEditPage() {
       ...student,
    } as Student;
 
-   const handleStudentFormSubmit = (formValues: Student) => {
+   const handleStudentFormSubmit = async (formValues: Student) => {
       // TODO: Handle submit here, call API  to add/update student
+      if (isEdit) {
+         await studentApi.update(formValues);
+      } else {
+         await studentApi.add(formValues);
+      }
+
+      // Redirect back to student list
+      history.push('/admin/students');
    };
 
    return (

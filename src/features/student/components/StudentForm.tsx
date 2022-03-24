@@ -1,4 +1,6 @@
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, CircularProgress } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import { useState } from 'react';
 import { InputField, RadioGroupField, SelectField } from 'components/FormFields';
 import { Student } from 'models';
 import React from 'react';
@@ -45,15 +47,28 @@ export interface StudentFormProps {
 
 export default function StudentForm(props: StudentFormProps) {
    const { initialValues, onSubmit } = props;
-   const { control, handleSubmit } = useForm<Student>({
+   const {
+      control,
+      handleSubmit,
+      formState: { isSubmitting },
+   } = useForm<Student>({
       defaultValues: initialValues,
       resolver: yupResolver(schema),
    });
    const cityOptions = useAppSelector(selectCityOptions);
+   const [error, setError] = useState<string>('');
 
-   const handleFormSubmit = (formValues: Student) => {
-      console.log('Submit:', formValues);
+   const handleFormSubmit = async (formValues: Student) => {
+      try {
+         // Clear previous submission error
+         setError('');
+
+         await onSubmit?.(formValues);
+      } catch (error: any) {
+         setError(error.message);
+      }
    };
+
    return (
       <Box maxWidth={400}>
          <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -69,11 +84,16 @@ export default function StudentForm(props: StudentFormProps) {
                   { label: 'Female', value: 'female' },
                ]}
             />
-            <SelectField name="city" control={control} label="City" options={cityOptions} />
+            {Array.isArray(cityOptions) && cityOptions.length > 0 && (
+               <SelectField name="city" control={control} label="City" options={cityOptions} />
+            )}
+
+            {error && <Alert severity="error">{error}</Alert>}
 
             <Box mt={3}>
-               <Button type="submit" variant="contained" color="primary">
-                  Save
+               <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
+                  {isSubmitting && <CircularProgress size={16} color="primary" />}
+                  &nbsp;Save
                </Button>
             </Box>
          </form>
