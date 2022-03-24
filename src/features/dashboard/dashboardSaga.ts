@@ -1,4 +1,4 @@
-import studentApi from '../../api/student';
+import studentApi from '../../api/studentApi';
 import { City, ListResponse, Student } from '../../models';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { dashboardActions, RankingByCity } from './dashboardSlice';

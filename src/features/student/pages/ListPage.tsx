@@ -2,7 +2,7 @@ import { Box, Button, LinearProgress, makeStyles, Typography } from '@material-u
 import { Pagination } from '@material-ui/lab';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import React, { useEffect } from 'react';
-import studentApi from '../../../api/student';
+import studentApi from '../../../api/studentApi';
 import { ListParams, Student } from '../../../models';
 import { selectCityList, selectCityMap } from '../../city/citySlice';
 import StudentFilters from '../components/StudentFilter';

@@ -4,7 +4,7 @@ import { ChevronLeft } from '@material-ui/icons';
 import { Student } from 'models';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import studentApi from '../../../api/student';
+import studentApi from '../../../api/studentApi';
 import StudentForm from '../components/StudentForm';
 
 export default function AddEditPage() {
