@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './index.css';
 import Form from './Form';
 import List from './List';
 export interface Lab1Props {}

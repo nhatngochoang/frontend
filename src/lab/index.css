@@ -56,3 +56,15 @@ button {
    border-radius: 3px;
    margin-bottom: 1rem;
 }
+
+/* Lab 2 */
+.table,
+.reservation {
+   border: 1px solid lightgray;
+}
+.table {
+   flex: 0 0 40%;
+}
+.reservation {
+   flex: 0 0 55%;
+}
