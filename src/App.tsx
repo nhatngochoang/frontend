@@ -3,9 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import { NotFound, PrivateRoute } from './components/Common';
 import { AdminLayout } from './components/Layout';
 import { LoginPage } from './features/auth/pages/LoginPage';
+import Formik from './formik/SignupForm';
 import Lab from './lab';
 import ReactHookForm from './react-hook-form-v7';
-import Demo from './react-hook-form-v7/Demo.js';
+// import Demo from './react-hook-form-v7/Demo.js';
 
 function App() {
    return (
@@ -19,9 +20,13 @@ function App() {
             <PrivateRoute path="/admin">
                <AdminLayout />
             </PrivateRoute>
-            {/* DEMO FORM */}
+            {/* React Hook FORM */}
             <Route path="/reactHookForm">
                <ReactHookForm />
+            </Route>
+            {/* React Hook FORM */}
+            <Route path="/formik">
+               <Formik />
             </Route>
             {/* Lab */}
             <Route path="/lab">

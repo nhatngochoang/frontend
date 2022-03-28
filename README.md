@@ -17,6 +17,8 @@ yarn add history@4.10.1
 
 npm install react-hook-form
 npm i react-select
+
+npm i formik
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc
