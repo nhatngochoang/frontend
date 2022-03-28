@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { StudentService } from './model';
 export interface Lab3Props {}
 
 export default function Lab3(props: Lab3Props) {
-   const [data, setData] = useState(() => {
+   const initData = useCallback(() => {
       const students = new StudentService();
       students.setData();
       return students.data;
-   });
+   }, []);
+
+   const [data, setData] = useState(initData());
    const [code, setCode] = useState('');
+   const [search, setSearch] = useState('');
    const [name, setName] = useState('');
    const [toan, setToan] = useState(0);
    const [li, setLi] = useState(0);
@@ -25,13 +28,30 @@ export default function Lab3(props: Lab3Props) {
       data.push(newStudent);
       setData([...data]);
    };
+
+   const handleDelete = (id: string) => {
+      const newData = data.filter((item) => item.code !== id);
+      setData(newData);
+   };
+
+   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value);
+      if (e.target.value === '') {
+         setData(initData());
+      } else {
+         const newData = initData().filter((item) =>
+            item.code.toLowerCase().includes(e.target.value.toLowerCase())
+         );
+         setData(newData);
+      }
+   };
    useEffect(() => {}, []);
    return (
       <div className="container">
          <div className="row">
             <div className="col-md-4">
                <form action="" method="post" onSubmit={handleSubmit}>
-                  <legend>Title</legend>
+                  <legend>Form</legend>
                   <div className="form-group">
                      <label htmlFor="code">Mã</label>
                      <input
@@ -102,6 +122,17 @@ export default function Lab3(props: Lab3Props) {
                </form>
             </div>
             <div className="col-md-8">
+               <div className="form-group">
+                  <label htmlFor="search-code">Search</label>
+                  <input
+                     type="text"
+                     className="form-control"
+                     placeholder="...mã"
+                     id="search-code"
+                     value={search}
+                     onChange={handleSearch}
+                  />
+               </div>
                <h2>Danh sách sinh viên</h2>
                <table className="table">
                   <thead>
@@ -111,8 +142,7 @@ export default function Lab3(props: Lab3Props) {
                         <th>Toán</th>
                         <th>Lí</th>
                         <th>Hóa</th>
-                        {/* <th>Điểm TB</th>
-                  <th>Xếp loại</th> */}
+                        <th></th>
                      </tr>
                   </thead>
                   <tbody>
@@ -124,6 +154,14 @@ export default function Lab3(props: Lab3Props) {
                               <td>{s.toan}</td>
                               <td>{s.li}</td>
                               <td>{s.hoa}</td>
+                              <td>
+                                 <button
+                                    className="btn btn-sm btn-danger"
+                                    onClick={() => handleDelete(s.code)}
+                                 >
+                                    Delete
+                                 </button>
+                              </td>
                            </tr>
                         );
                      })}
