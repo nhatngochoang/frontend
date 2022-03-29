@@ -5,6 +5,7 @@ import { AdminLayout } from './components/Layout';
 import { LoginPage } from './features/auth/pages/LoginPage';
 import Formik from './formik/SignupForm';
 import Lab from './lab';
+import Pokemon from './pokemonAPI';
 import ReactHookForm from './react-hook-form-v7';
 // import Demo from './react-hook-form-v7/Demo.js';
 
@@ -24,13 +25,17 @@ function App() {
             <Route path="/reactHookForm">
                <ReactHookForm />
             </Route>
-            {/* React Hook FORM */}
+            {/* FORMIK */}
             <Route path="/formik">
                <Formik />
             </Route>
             {/* Lab */}
             <Route path="/lab">
                <Lab />
+            </Route>
+            {/* Pokemon */}
+            <Route path="/pokemon">
+               <Pokemon />
             </Route>
             {/* NOT FOUND */}
             <Route path="*">
