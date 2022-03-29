@@ -7,6 +7,8 @@ import Formik from './formik/SignupForm';
 import Lab from './lab';
 import Pokemon from './pokemonAPI';
 import ReactHookForm from './react-hook-form-v7';
+import ReactQueryMUIStyled from './reactquery-mui-styled';
+
 // import Demo from './react-hook-form-v7/Demo.js';
 
 function App() {
@@ -36,6 +38,10 @@ function App() {
             {/* Pokemon */}
             <Route path="/pokemon">
                <Pokemon />
+            </Route>
+            {/* ReactQuery-MUI-Styled */}
+            <Route path="/queryMuiStyled">
+               <ReactQueryMUIStyled />
             </Route>
             {/* NOT FOUND */}
             <Route path="*">

@@ -19,6 +19,10 @@ npm install react-hook-form
 npm i react-select
 
 npm i formik
+
+npm i @material-ui/core @material-ui/icons
+npm i styled-components @types/styled-components
+npm i react-query
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc
