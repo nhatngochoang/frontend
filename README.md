@@ -1,4 +1,5 @@
 # Init 
+```bash
 yarn create react-app my-app --template redux-typescript
 yarn add redux-saga
 yarn add tape
@@ -23,6 +24,7 @@ npm i formik
 npm i @material-ui/core @material-ui/icons
 npm i styled-components @types/styled-components
 npm i react-query
+```
 # add  "baseUrl": "./src" in tsconfig
 
 # .prettierrc
