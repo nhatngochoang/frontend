@@ -6,8 +6,9 @@ import { LoginPage } from './features/auth/pages/LoginPage';
 import Formik from './formik/SignupForm';
 import Lab from './lab';
 import Pokemon from './pokemonAPI';
-import ReactHookForm from './react-hook-form-v7';
+import ReactHookForm from './pages/react-hook-form-v7';
 import ReactQueryMUIStyled from './reactquery-mui-styled';
+import ContextAPI from './pages/contextAPI';
 
 // import Demo from './react-hook-form-v7/Demo.js';
 
