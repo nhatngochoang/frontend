@@ -1,56 +1,60 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { NotFound, PrivateRoute } from './components/Common';
+import { AdminLayout } from './components/Layout';
+import { LoginPage } from './features/auth/pages/LoginPage';
+import Formik from './formik/SignupForm';
+import Lab from './lab';
+import Pokemon from './pokemonAPI';
+import ReactHookForm from './pages/react-hook-form-v7';
+import ReactQueryMUIStyled from './reactquery-mui-styled';
+import ContextAPI from './pages/contextAPI';
+
+// import Demo from './react-hook-form-v7/Demo.js';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+   return (
+      <div>
+         <Switch>
+            {/* LOGIN */}
+            <Route path="/login">
+               <LoginPage />
+            </Route>
+            {/* ADMIN */}
+            <PrivateRoute path="/admin">
+               <AdminLayout />
+            </PrivateRoute>
+            {/* React Hook FORM */}
+            <Route path="/reactHookForm">
+               <ReactHookForm />
+            </Route>
+            {/* FORMIK */}
+            <Route path="/formik">
+               <Formik />
+            </Route>
+            {/* Lab */}
+            <Route path="/lab">
+               <Lab />
+            </Route>
+            {/* Pokemon */}
+            <Route path="/pokemon">
+               <Pokemon />
+            </Route>
+            {/* ReactQuery-MUI-Styled */}
+            <Route path="/queryMuiStyled">
+               <ReactQueryMUIStyled />
+            </Route>
+            {/* Context API */}
+            <Route path="/contextAPI">
+               <ContextAPI />
+            </Route>
+            {/* NOT FOUND */}
+            <Route path="*">
+               <NotFound />
+            </Route>
+         </Switch>
+      </div>
+   );
 }
 
 export default App;
