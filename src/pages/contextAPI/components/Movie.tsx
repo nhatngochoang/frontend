@@ -62,6 +62,7 @@ const Movies = () => {
                   label={movie.title}
                   clickable
                   color={chipTheme}
+                  //! CTRL + click to find Type
                   onDelete={deleteMovie.bind(this, movie.id)}
                   className={classes.movieChip}
                />

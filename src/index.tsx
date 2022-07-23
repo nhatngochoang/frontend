@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 ReactDOM.render(
-   <React.StrictMode>
+   <React.Fragment>
       <Provider store={store}>
          <ConnectedRouter history={history}>
             {/* Reset CSS */}
@@ -31,6 +31,6 @@ ReactDOM.render(
             pauseOnHover
          />
       </Provider>
-   </React.StrictMode>,
+   </React.Fragment>,
    document.getElementById('root')
 );

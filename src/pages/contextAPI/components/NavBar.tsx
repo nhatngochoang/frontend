@@ -13,9 +13,11 @@ import {
    Toolbar,
    Typography,
 } from '@material-ui/core';
+import { AuthContext } from 'contexts/AuthContext';
 import { ProgressContext } from 'contexts/ProgressContext';
 import { ThemeContext } from 'contexts/ThemeContext';
 import * as React from 'react';
+import Login from './Login';
 import WelcomeMessage from './WelcomeMessage';
 
 export interface NavBarProps {}
@@ -39,8 +41,14 @@ export default function NavBar(props: NavBarProps) {
 
    const { lastTime, status } = React.useContext(ProgressContext);
    const { theme, toggleTheme } = React.useContext(ThemeContext);
+   const {
+      authInfo: { isAuthenticated },
+      toggleAuth,
+   } = React.useContext(AuthContext);
 
    const [position, setPosition] = React.useState<string>('Front-end');
+
+   const [loginOpen, setLoginOpen] = React.useState(false);
 
    const onPositionChange = React.useCallback(
       (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -80,8 +88,14 @@ export default function NavBar(props: NavBarProps) {
                   </Box>
                </Box>
                <Box textAlign="center">
-                  <Button variant="contained">Login</Button>
+                  <Button
+                     variant="contained"
+                     onClick={isAuthenticated ? () => toggleAuth('') : () => setLoginOpen(true)}
+                  >
+                     {isAuthenticated ? 'Logout' : 'Login'}
+                  </Button>
                </Box>
+               <Login isOpen={loginOpen} handleClose={setLoginOpen} />
             </Box>
          </Toolbar>
       </AppBar>
