@@ -44,6 +44,10 @@ function App() {
             <Route path="/queryMuiStyled">
                <ReactQueryMUIStyled />
             </Route>
+            {/* Context API */}
+            <Route path="/contextAPI">
+               <ContextAPI />
+            </Route>
             {/* NOT FOUND */}
             <Route path="*">
                <NotFound />
