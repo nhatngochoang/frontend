@@ -10,6 +10,7 @@ import './index.css';
 import { history } from './utils';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import CurrentUserContext from 'contexts/CurrentUserContext';
 
 ReactDOM.render(
    <React.Fragment>
@@ -17,7 +18,9 @@ ReactDOM.render(
          <ConnectedRouter history={history}>
             {/* Reset CSS */}
             <CssBaseline />
-            <App />
+            <CurrentUserContext>
+               <App />
+            </CurrentUserContext>
          </ConnectedRouter>
          <ToastContainer
             position="top-right"

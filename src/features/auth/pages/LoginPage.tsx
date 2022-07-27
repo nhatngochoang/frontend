@@ -1,6 +1,8 @@
 import { Box, Button, CircularProgress, makeStyles, Paper, Typography } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import * as React from 'react';
+import { CurrentUserContext } from 'contexts/CurrentUserContext';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { authActions } from '../authSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +24,12 @@ export function LoginPage() {
 
    const isLogging = useAppSelector((state) => state.auth.logging);
 
+   const { setCurrentUser, setAuthLoading } = useContext(CurrentUserContext);
+
+   const history = useHistory();
+
    const handleLoginClick = () => {
+      setAuthLoading(true);
       // TODO: Get username + pwd from login form
       dispatch(
          authActions.login({
@@ -30,6 +37,25 @@ export function LoginPage() {
             password: '',
          })
       );
+
+      const token = localStorage.getItem('login_token');
+      if (token) {
+         setCurrentUser({
+            email: '',
+            password: '',
+         });
+         setAuthLoading(false);
+      } else {
+         setCurrentUser(
+            {
+               email: '',
+               password: '',
+            } || null
+         );
+         setAuthLoading(false);
+      }
+
+      history.push('/admin');
    };
 
    return (
@@ -38,6 +64,13 @@ export function LoginPage() {
             <Typography variant="h5" component="h1">
                Student Management
             </Typography>
+            <Box mt={4}>
+               <div>
+                  LoginForm
+                  <input type="text" />
+                  <input type="password" />
+               </div>
+            </Box>
             <Box mt={4}>
                <Button fullWidth variant="contained" color="primary" onClick={handleLoginClick}>
                   {isLogging && <CircularProgress size={20} color="secondary" />} &nbsp; Fake Login

@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
+import { CurrentUserContext } from 'contexts/CurrentUserContext';
+import React, { useContext } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { authActions } from '../../features/auth/authSlice';
 
@@ -17,10 +18,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Header() {
+   const { handleLogout } = useContext(CurrentUserContext);
+
    const classes = useStyles();
    const dispatch = useAppDispatch();
 
    const handleLogoutClick = () => {
+      handleLogout();
       // TODO: Get username + pwd from login form
       dispatch(authActions.logout());
    };

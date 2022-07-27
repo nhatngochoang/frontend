@@ -85,3 +85,5 @@ student slice state:
 
 # Bug
 https://www.kindacode.com/article/react-warning-finddomnode-is-deprecated-in-strictmode/
+
+# MUI v4
