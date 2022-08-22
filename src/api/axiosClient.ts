@@ -39,12 +39,16 @@ axiosClient.interceptors.response.use(
    function (response: AxiosResponse) {
       // Any status code that lie within the range of 2xx cause this function to trigger
       // Do something with response data
-      return response.data; // take data only
+      if (response && response.data) return response.data;
+      return response; // take data only
    },
-   function (error) {
+   function (err) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      return Promise.reject(error);
+      if (!err.response) {
+         return alert(err);
+      }
+      throw err.response;
    }
 );
 

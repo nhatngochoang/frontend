@@ -1,28 +1,32 @@
 import { Box } from '@mui/material';
+import { useAppDispatch } from 'app/hooks';
 import Loading from 'components/Common/Loading';
 import Sidebar from 'components/Common/Sidebar';
 import * as React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { setUser } from 'redux/features/userSlice';
 import authUtils from 'utils/auth';
 export interface AppLayoutProps {}
 
 export function AppLayout(props: AppLayoutProps) {
    const naviagte = useNavigate();
+   const dispatch = useAppDispatch();
    const [loading, setLoading] = React.useState(true);
 
    React.useEffect(() => {
       const checkAuth = async () => {
          setLoading(true);
-         const isAuth = await authUtils.isAuthenticated();
+         const user = await authUtils.isAuthenticated();
 
-         if (isAuth) {
+         if (user) {
+            dispatch(setUser(user));
             setLoading(false);
          } else {
             naviagte('/login');
          }
       };
       checkAuth();
-   }, [naviagte]);
+   }, [naviagte, dispatch]);
 
    return loading ? (
       <Loading fullHeight />

@@ -2,13 +2,13 @@ import { Box, Container } from '@mui/material';
 import assets from 'assets';
 import Loading from 'components/Common/Loading';
 import * as React from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import authUtils from 'utils/auth';
 export interface AuthLayoutProps {}
 
 export function AuthLayout(props: AuthLayoutProps) {
    const naviagte = useNavigate();
-   const location = useLocation();
+
    const [loading, setLoading] = React.useState(true);
 
    React.useEffect(() => {
