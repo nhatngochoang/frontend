@@ -1,6 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { value: {} };
+type UserState = {
+   value: {
+      _id: string;
+      username: string;
+      id: string;
+   };
+};
+
+const initialState: UserState = {
+   value: {
+      _id: '',
+      username: '',
+      id: '',
+   },
+};
 
 export const userSlice = createSlice({
    name: 'user',
