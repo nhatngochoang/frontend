@@ -15,6 +15,7 @@ const authApi = {
       return axiosClient.post(url);
    },
 
+   // BASE
    getAll(params: ListParams): Promise<ListResponse<Student>> {
       const url = './students';
       return axiosClient.get(url, { params });

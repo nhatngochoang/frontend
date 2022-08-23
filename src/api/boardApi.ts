@@ -14,16 +14,17 @@ const boardApi = {
       return axiosClient.get(url);
    },
 
-   create(): Promise<any> {
+   create(): Promise<Board> {
       const url = 'boards';
       return axiosClient.post(url);
    },
 
    updatePosition: (params: ListParams) => axiosClient.put('boards', params),
-   update(id: string, params: ListParams): any {
+   updateFavouritePosition: (params: ListParams) => axiosClient.put('boards/favourites', params),
+
+   update(id: string, params: ListParams): Promise<Board> {
       return axiosClient.put(`boards/${id}`, params);
    },
-   updateFavouritePosition: (params: ListParams) => axiosClient.put('boards/favourites', params),
 
    delete(id: string): Promise<any> {
       const url = `boards/${id}`;

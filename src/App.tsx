@@ -2,6 +2,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import './assets/css/custom-scrollbar.css';
+import './assets/css/custom-editor.css';
 
 import CssBaseLine from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

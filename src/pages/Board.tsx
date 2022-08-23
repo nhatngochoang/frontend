@@ -5,6 +5,7 @@ import { Box, Button, Divider, IconButton, TextField, Typography } from '@mui/ma
 import boardApi from 'api/boardApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import EmojiPicker from 'components/Common/EmojiPicker';
+import Kanban from 'components/Common/Kanban';
 import { Section } from 'models';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -197,21 +198,9 @@ export default function Board() {
                   }}
                />
             </Box>
-            {/* kanban board */}
             <Box>
-               <Box
-                  sx={{
-                     display: 'flex',
-                     alignItems: 'center',
-                     justifyContent: 'space-between',
-                  }}
-               >
-                  <Button>Add section</Button>
-                  <Typography variant="body2" fontWeight="700">
-                     {sections.length} Sections
-                  </Typography>
-               </Box>
-               <Divider sx={{ margin: '10px 0' }} />
+               {/* kanban board */}
+               <Kanban data={sections} boardId={boardId} />
             </Box>
          </Box>
       </>
