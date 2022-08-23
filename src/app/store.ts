@@ -1,8 +1,12 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import boardReducer from 'redux/features/boardSlice';
+import favouriteReducer from 'redux/features/favouriteSlice';
 import userReducer from 'redux/features/userSlice';
 
 const rootReducer = combineReducers({
    user: userReducer,
+   board: boardReducer,
+   favourites: favouriteReducer,
 });
 
 export const store = configureStore({
