@@ -1,5 +1,5 @@
 .ck.ck-editor__main > .ck-editor__editable {
-   background-color: #2a2a2a; /*toggle theme*/
+   background-color: #2a2a2a !important; /*toggle theme*/
    border: none;
    outline: none;
 }
@@ -50,6 +50,6 @@
 }
 
 .ck-editor__editable_inline {
-   color: white; /*toggle 1e1616 theme*/
+   color: white !important; /*toggle 1e1616 theme*/
    min-height: 450px;
 }
