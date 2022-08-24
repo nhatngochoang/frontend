@@ -1,60 +1,48 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { NotFound, PrivateRoute } from './components/Common';
-import { AdminLayout } from './components/Layout';
-import { LoginPage } from './features/auth/pages/LoginPage';
-import Formik from './formik/SignupForm';
-import Lab from './lab';
-import Pokemon from './pokemonAPI';
-import ReactHookForm from './pages/react-hook-form-v7';
-import ReactQueryMUIStyled from './reactquery-mui-styled';
-import ContextAPI from './pages/contextAPI';
-
-// import Demo from './react-hook-form-v7/Demo.js';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { PaletteMode } from '@mui/material';
+import CssBaseLine from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import 'assets/css/custom-scrollbar.css';
+import { AppLayout } from 'components/Layout/AppLayout';
+import { AuthLayout } from 'components/Layout/AuthLayout';
+import Login from 'pages/Auth/Login';
+import Signup from 'pages/Auth/Signup';
+import Board from 'pages/Board';
+import Home from 'pages/Home';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
 
 function App() {
+   const [mode, setMode] = useState<PaletteMode>('dark');
+   const theme = createTheme({
+      palette: { mode: mode },
+   });
+
+   const toggleMode = () => {
+      setMode(mode === 'light' ? 'dark' : 'light');
+   };
+
    return (
-      <div>
-         <Switch>
-            {/* LOGIN */}
-            <Route path="/login">
-               <LoginPage />
-            </Route>
-            {/* ADMIN */}
-            <PrivateRoute path="/admin">
-               <AdminLayout />
-            </PrivateRoute>
-            {/* React Hook FORM */}
-            <Route path="/reactHookForm">
-               <ReactHookForm />
-            </Route>
-            {/* FORMIK */}
-            <Route path="/formik">
-               <Formik />
-            </Route>
-            {/* Lab */}
-            <Route path="/lab">
-               <Lab />
-            </Route>
-            {/* Pokemon */}
-            <Route path="/pokemon">
-               <Pokemon />
-            </Route>
-            {/* ReactQuery-MUI-Styled */}
-            <Route path="/queryMuiStyled">
-               <ReactQueryMUIStyled />
-            </Route>
-            {/* Context API */}
-            <Route path="/contextAPI">
-               <ContextAPI />
-            </Route>
-            {/* NOT FOUND */}
-            <Route path="*">
-               <NotFound />
-            </Route>
-         </Switch>
-      </div>
+      <ThemeProvider theme={theme}>
+         <CssBaseLine />
+         <BrowserRouter>
+            <Routes>
+               <Route path="/" element={<AuthLayout />}>
+                  <Route path="login" element={<Login />} />
+                  <Route path="signup" element={<Signup />} />
+               </Route>
+               <Route path="/" element={<AppLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path="boards" element={<Home />} />
+                  <Route path="boards/:boardId" element={<Board toggleMode={toggleMode} />} />
+               </Route>
+            </Routes>
+         </BrowserRouter>
+      </ThemeProvider>
    );
 }
-
 export default App;

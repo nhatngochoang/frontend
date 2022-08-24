@@ -22,7 +22,22 @@
     // "noImplicitThis": false,
     // "noImplicitAny": false,
   },
-  "include": [
-    "src"
-  ]
+  "baseUrl": ".",
+  "paths": {
+    "@src/*": ["./src/*"],
+    "@assets/*": ["./src/assets/*"],
+    "@components/*": ["./src/components/*"],
+    
+    "@constants/*": ["./src/constants/*"],
+    "@contexts/*": ["./src/contexts/*"],
+    "@hooks/*": ["./src/hooks/*"],
+
+    "@models/*": ["src/models/*"],
+    "@pages/*": ["./src/pages/*"],
+    "@reducers/*": ["./src/reducers/*"],
+    "@utils/*": ["./src/utils/*"],
+
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

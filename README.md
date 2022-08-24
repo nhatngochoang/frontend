@@ -1,41 +1,6 @@
-# Init 
-```bash
-yarn create react-app my-app --template redux-typescript
-yarn add redux-saga
-yarn add tape
-
-yarn add react-router-dom
-yarn add @types/react-router-dom
-
-yarn add @mui/material @mui/styled-engine-sc styled-components
-yarn add @mui/icons-material 
-yarn add @mui/styles
-yarn add @emotion/react
-yarn add @emotion/styled
-
-npm install --save connected-react-router
-yarn add history@4.10.1
-
-npm install react-hook-form
-npm i react-select
-
-npm i formik
-
-npm i @material-ui/core @material-ui/icons
-npm i styled-components @types/styled-components
-npm i react-query
-```
-# add  "baseUrl": "./src" in tsconfig
-
-# .prettierrc
 
 # useDispatch ➤ useAppDispatch
 # useSelector ➤ useAppSelector
-
-yield takeEvery('*', log)
-yield takeEvery('counter/increment', log)
-yield takeEvery(increment().type, log)  {increment} ➤ export from counterSlice.actions
-
 
 ----
 ### Different ways to handle navigation in Redux Saga
@@ -69,19 +34,3 @@ const function App() {
   // ...
 }
 ```
-3. Using connected-react-router
-- Sync routings to redux.
-- Navigate by dispatching an action to redux store.
-- One thing to make sure, when route changes, it doesn't cause re-render our components.
---> We'll go with this solution for now.
-Lib: connected-react-router + custom history
-
-
-student slice state:
-- loading
-- list
-- pagination
-- filter { page: 1, limit: 10, ... }
-
-# Bug
-https://www.kindacode.com/article/react-warning-finddomnode-is-deprecated-in-strictmode/
