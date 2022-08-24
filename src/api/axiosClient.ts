@@ -1,7 +1,7 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import queryString from 'query-string';
 
-const baseUrl = 'http://localhost:5000/api/v1/';
+const baseUrl = 'https://kanban-api-3000.herokuapp.com/api/v1/';
 
 const getToken = () => {
    return localStorage.getItem('token');
