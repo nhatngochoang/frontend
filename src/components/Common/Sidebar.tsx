@@ -1,6 +1,15 @@
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import { Box, Drawer, IconButton, List, ListItem, ListItemButton, Typography } from '@mui/material';
+import {
+   Box,
+   Drawer,
+   IconButton,
+   List,
+   ListItem,
+   ListItemButton,
+   Typography,
+   useTheme,
+} from '@mui/material';
 import boardApi from 'api/boardApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import assets from 'assets';
@@ -13,6 +22,7 @@ import FavouriteList from './FavouriteList';
 const sideBarWidth = 240;
 
 export default function Sidebar() {
+   const theme = useTheme();
    const user = useAppSelector((state) => state.user.value);
    const boards = useAppSelector((state) => state.board.value);
 
@@ -87,6 +97,11 @@ export default function Sidebar() {
             sx={{
                width: sideBarWidth,
                height: '100vh',
+               boxShadow:
+                  theme.palette.mode === 'light'
+                     ? 'rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px'
+                     : '',
+               position: 'fixed',
                '& > div': { borderRight: 'none' },
             }}
          >
@@ -95,7 +110,10 @@ export default function Sidebar() {
                sx={{
                   width: sideBarWidth,
                   height: '100vh',
-                  backgroundColor: assets.colors.secondary,
+                  backgroundColor:
+                     theme.palette.mode === 'dark'
+                        ? assets.colors.secondary
+                        : assets.colors.primary,
                }}
             >
                <ListItem>

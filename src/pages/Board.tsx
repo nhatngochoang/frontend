@@ -1,7 +1,10 @@
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import { Box, Button, Divider, IconButton, TextField, Typography } from '@mui/material';
+import { Box, IconButton, TextField } from '@mui/material';
+import { useTheme } from '@mui/system';
 import boardApi from 'api/boardApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import EmojiPicker from 'components/Common/EmojiPicker';
@@ -15,10 +18,15 @@ import { setFavouriteList } from 'redux/features/favouriteSlice';
 let timer: any;
 const timeout = 500;
 
-export default function Board() {
+type BoardProps = {
+   toggleMode: () => void;
+};
+
+export default function Board({ toggleMode }: BoardProps) {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
    const { boardId } = useParams();
+   const theme = useTheme();
    const [title, setTitle] = useState('');
    const [description, setDescription] = useState('');
    const [sections, setSections] = useState<Section[]>([]);
@@ -162,6 +170,13 @@ export default function Board() {
          >
             <IconButton onClick={addFavourite}>
                {isFavourite ? <StarOutlinedIcon color="warning" /> : <StarBorderOutlinedIcon />}
+            </IconButton>
+            <IconButton onClick={toggleMode}>
+               {theme.palette.mode === 'light' ? (
+                  <DarkModeIcon color="primary" />
+               ) : (
+                  <LightModeIcon color="warning" />
+               )}
             </IconButton>
             <IconButton color="error" onClick={deleteBoard}>
                <DeleteOutlinedIcon />

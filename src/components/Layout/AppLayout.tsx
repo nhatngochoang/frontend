@@ -6,9 +6,8 @@ import * as React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { setUser } from 'redux/features/userSlice';
 import authUtils from 'utils/auth';
-export interface AppLayoutProps {}
 
-export function AppLayout(props: AppLayoutProps) {
+export function AppLayout() {
    const naviagte = useNavigate();
    const dispatch = useAppDispatch();
    const [loading, setLoading] = React.useState(true);
@@ -42,6 +41,7 @@ export function AppLayout(props: AppLayoutProps) {
                flexGrow: 1,
                p: 1,
                width: 'max-content',
+               marginLeft: '240px',
             }}
          >
             <Outlet />
