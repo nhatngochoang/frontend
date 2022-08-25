@@ -20,6 +20,16 @@ function App() {
    const [mode, setMode] = useState<PaletteMode>('dark');
    const theme = createTheme({
       palette: { mode: mode },
+      typography: {
+         fontFamily: [
+            'Cascadia Code',
+            'Nunito',
+            'Roboto',
+            'Helvetica Neue',
+            'Arial',
+            'sans-serif',
+         ].join(','),
+      },
    });
 
    const toggleMode = () => {
